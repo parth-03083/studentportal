@@ -3,3 +3,25 @@ local_settings.py
 db.sqlite3
 */__pycache__/*
 __pycache__/*
+env/*
+
+*.pyc
+node_modules
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+db.sqlite3
+env
+local_settings.py
+# cademy/local_settings.py
+# Only for Development only
+**/migrations/**
+**/migrations
+**/migrations/__init__.py
+sportalmain/migrations
+blogApp/migrations/
+
+logs/
+logs/*.log
+studentportal/__pycache__/*
