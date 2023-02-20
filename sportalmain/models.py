@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 class StudentDetails(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    enrollment_number = models.CharField(primary_key=True, max_length=10)
+    enrollment_number = models.CharField(primary_key=True, max_length=12)
     personal_email = models.EmailField()
     # institute_email = models.EmailField()
     # first_name = models.CharField(max_length=30)
