@@ -1,0 +1,18 @@
+html,body{
+    height: 100%;
+      margin: 0;
+      padding: 0;
+}
+.bg-dark{
+    background-color: #060E40 !important;
+}
+
+.nav-link{
+    color: #F5F5F7 !important;
+    opacity: 0.6;
+}
+
+.active {
+    color:#F5F5F7 !important;
+    opacity: 1;
+}

@@ -17,15 +17,34 @@ class StudentDetails(models.Model):
     father_email = models.EmailField(blank=True)
     mother_name = models.CharField(max_length=60)
     mother_email = models.EmailField(blank=True)
-    blood_group = models.CharField(max_length=5, blank=True)
-    gender = models.CharField(max_length=10)
+    BLOOD_TYPE=[
+        ('bp','B+'),
+        ('bn','B-'),
+        ('ap','A+'),
+        ('an','A-'),
+        ('op','O+'),
+        ('on','O-'),
+        ('abp','AB+'),
+        ('abn','AB-'),
+    ]
+    blood_group = models.CharField(choices=BLOOD_TYPE,max_length=5, blank=True)
+    GENDER_TYPE=[
+        ('male','Male'),
+        ('female','Female')
+    ]
+    gender = models.CharField(choices=GENDER_TYPE,max_length=10)
     date_of_birth = models.DateField()
     aadhar_number = models.CharField(max_length=12, unique=True)
     religion = models.CharField(max_length=20)
     caste = models.CharField(max_length=20)
-    nationality = models.CharField(max_length=20, default="Indian")
-    reserve_category = models.CharField(max_length=20, blank=True)
-    person_with_disability = models.CharField(max_length=20, blank=True)
+    NATIONALITY_TYPE=[
+        ('indian','Indian'),
+        ('nri','NRI'),
+    ]
+    nationality = models.CharField(choices=NATIONALITY_TYPE,max_length=20, default=1)
+
+    reserve_category = models.BooleanField(max_length=20, blank=True)
+    person_with_disability = models.BooleanField(max_length=20, blank=True)
     personal_mobile_no = models.CharField(max_length=15)
     parent_mobile_no = models.CharField(max_length=15)
     address = models.TextField()
