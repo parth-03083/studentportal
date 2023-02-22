@@ -1,5 +1,5 @@
 # Create your models here.
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -52,7 +52,50 @@ class StudentDetails(models.Model):
         return self.enrollment_number
 
 
+class AcademicInfo(models.Model):
 
-class StudentAcademicDetails(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rank = models.CharField(max_length=10)
+    roll_no = models.CharField(max_length=10)
+    admission_type = models.CharField(max_length=10)
+    date = models.DateField()
+    quota = models.CharField(max_length=20)
+    ews = models.BooleanField()
+    ssc = models.FloatField()
+    STREAM_TYPE = [
+        ('hsc', 'HSC'),
+        ('diploma', 'Diploma'),
+    ]
+    stream = models.CharField(max_length=10, choices=STREAM_TYPE)
+    hsc_result = models.FloatField()
+    hsc_board = models.CharField(max_length=50)
+    university_name = models.CharField(max_length=100)
+    college_name = models.CharField(max_length=100)
+    branch = models.CharField(max_length=50)
+    cgpa = models.FloatField()
+    COURSE_CHOICES = [
+        ('be', 'BE'),
+        ('me', 'ME')
+    ]
+    current_course = models.CharField(max_length=5, choices=COURSE_CHOICES)
+    current_semester = models.IntegerField(validators=[
+            MaxValueValidator(8),
+            MinValueValidator(1)
+        ])
+    BRANCH_CHOICES = [
+        ('ce', 'Computer'),
+        ('it', 'Information Technology'),
+        ('ic', 'Instrumental and Control'),
+        ('bm', 'Biomedical'),
+        ('ec', 'Electornics and Communication'),
+        ('rob', 'Robotics'),
+        ('civil', 'Civil'),
+        ('mech', 'Mechanical'),
+        ('metl', 'Mettalurgy'),
+    ]
+    current_branch = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.user.email
+
     
