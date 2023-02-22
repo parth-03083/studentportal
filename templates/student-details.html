@@ -1,0 +1,68 @@
+{% load static %}
+{% load tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal</title>
+    <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+<body>
+    <div class="container-fluid ">
+        <!-- <div class="row bg-primary d-flex justify-content-center">
+            <div class="h1 text-center text-white"></div>
+        </div> -->
+        <div class="row d-flex justify-content-center h-100 bg-dark align-items-center">
+            <div class="col-md-4 card shadow p-2 m-2 rounded">
+                <form id="form" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <label class="form-label text-gray-900 mb-0">{{ field.label_tag }}</label>
+
+                        {{field|add_class:'form-control'}}
+                    {% endfor %}
+                    <div class="w-100 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary signup-submit m-2">Submit</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+      </div>
+
+
+
+
+    <script src="{% static 'vendors/jQuery/jQuery.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper-base.min.js"
+      integrity="sha384-zxRSn3abFpD/iz/veg8J/0KZ2LfRZ5E5XNjs5Nog12mzyZLcVCt2BCFWX9Cwk+W"
+      crossorigin="anonymous"></script>
+    <script>
+        var form = $('#form').submit(function(e){
+            e.preventDefault();
+            submitDetails();
+        })
+        function submitDetails(){
+            var form = $('#form').serialize();
+            $.ajax({
+                url: "{% url 'student-details' %}",
+                type: 'POST',
+                data: form,
+                success: function(response){
+                    console.log(response);
+                    window.location="{% url 'index' %}";
+                }
+            }); 
+        }
+        // $('.signup-submit').on('click',function(){
+        //     signup();
+        // })
+
+    </script>
+
+</body>
+</html>

@@ -10,6 +10,7 @@
     {% endblock %}
     <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- 
         "D:\mystuff\studentportal\sp\Student-Portal\static\vendors\bootstrap\css\bootstrap.min.css"
      -->
@@ -22,6 +23,20 @@
           <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
             <div class="sidebar-sticky">
               <ul class="nav flex-column">
+                <li class="nav-item">
+                  <div class="w-100 my-3 d-flex justify-content-center text-center flex-column">
+                    {% if request.user.is_authenticated %}
+                    <div class="logo text-white ">
+                      <img src="{% static 'assets/images/avtar.png' %}" alt="" srcset="">
+                    </div>
+                    <div class="text-secondary text-white">
+                      {{ request.user.first_name }} {{ request.user.last_name }}
+                    </div>
+                    {% else %}
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                  </div>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="#">Dashboard</a>
                 </li>
