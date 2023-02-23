@@ -42,3 +42,9 @@ class FeesForm(forms.ModelForm):
         model = Fees
         exclude = ['user']
 
+
+class BonafideRequestForm(forms.ModelForm):
+    class Meta:
+        model = BonafideRequest
+        exclude = ['user', 'uuid', 'status']
+

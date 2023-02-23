@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login
 def index(request):
     return render(request,'index.html')
 
+
 def register(request):
     if request.method == 'POST':
         form = SignUp(request.POST)
@@ -29,6 +30,7 @@ def register(request):
             return HttpResponse('Invalid form',form.errors) 
     context={'form':SignUp()}
     return render(request,'register.html',context)
+
 
 def loginView(request):
     if request.method == 'POST':
@@ -57,3 +59,18 @@ def studentDetails(request):
     context = {'form':form}
     return render(request,'student-details.html',context)
 
+
+def requestBonafide(request):
+
+    form = BonafideRequestForm()
+    if request.method == 'POST':
+        form = BonafideRequestForm(request.POST)
+        if form.is_valid():
+            bonafide = form.save(commit=False)
+            bonafide.user = request.user
+            bonafide.save()
+            return redirect(reverse('index'))
+        else:
+            return HttpResponse('Invalid form')
+    context = {'form':form}
+    return render(request,'bonafide-request.html',context)
