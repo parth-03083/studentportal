@@ -98,4 +98,20 @@ class AcademicInfo(models.Model):
     def __str__(self):
         return self.user.email
 
-    
+
+class Fees(models.Model):
+    DUI = models.CharField(max_length=12)
+    semester = models.IntegerField(validators=[
+        MaxValueValidator(8),
+        MinValueValidator(1)
+    ])
+    fees_type = models.CharField(max_length=50)
+    pdf_file = models.FileField(upload_to='fees/')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.fees_type} - {self.semester}'
+
+
+
+
