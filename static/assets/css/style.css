@@ -16,3 +16,7 @@ html,body{
     color:#F5F5F7 !important;
     opacity: 1;
 }
+
+.card-rounded{
+    border-radius: 0.65rem !important;
+}
