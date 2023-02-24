@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal</title>
+    <title> Student Portal </title>
     <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 </head>
@@ -18,27 +18,27 @@
             <div class="card col-md-6
              py-3 card dark-bg card-rounded shadow d-flex flex-column  align-items-center">
 
-                <div class="h2 text-center text-white mt-2">GECG Student Portal</div>
-                    <div class="col-md-6 shadow rounded py-2">
-                        <form id="loginForm" method="POST">
-                            {% csrf_token %}
-                            <div class="p-2">
-                                <label for="userneme" class="text-secondary  font-weight-bold"> E-mail </label>
-                                <input type="text" class="form-control" name="username" id="username"
-                                    placeholder="Enter Email">
-                            </div>
-                            <div class="p-2">
-                                <label for="password" class="text-secondary font-weight-bold"> Password </label>
-                                <input type="password" class="form-control" name="password" id="password">
-                            </div>
+                <div class="h2 text-center text-white mt-2"> Student Portal</div>
+                <div class="col-md-6 shadow rounded py-2">
+                    <form id="loginForm" method="POST">
+                        {% csrf_token %}
+                        <div class="p-2">
+                            <label for="userneme" class="text-secondary  font-weight-bold"> E-mail </label>
+                            <input type="text" class="form-control" name="username" id="username"
+                                placeholder="Enter Email">
+                        </div>
+                        <div class="p-2">
+                            <label for="password" class="text-secondary font-weight-bold"> Password </label>
+                            <input type="password" class="form-control" name="password" id="password">
+                        </div>
 
-                            <div class="w-100 d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary signup-submit m-2">Submit</button>
-                            </div>
+                        <div class="w-100 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary signup-submit m-2">Submit</button>
+                        </div>
 
-                        </form>
+                    </form>
 
-                    </div>
+                </div>
 
             </div>
         </div>

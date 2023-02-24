@@ -2,6 +2,7 @@
 {% load tags %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,59 +11,144 @@
     <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 </head>
+
 <body>
-    <div class="container-fluid ">
+    <div class="container-fluid h-100">
         <!-- <div class="row bg-primary d-flex justify-content-center">
             <div class="h1 text-center text-white"></div>
         </div> -->
-        <div class="row d-flex justify-content-center h-100 bg-dark align-items-center">
-            <div class="col-md-4 card shadow p-2 m-2 rounded">
+        <div class="row h-100 gen-bg d-flex justify-content-center align-items-center">
+            <div class="col-md-4 card shadow p-3 m-1 card-rounded">
                 <form id="form" method="POST">
                     {% csrf_token %}
-                    {% for field in form %}
-                    <label class="form-label text-gray-900 mb-0">{{ field.label_tag }}</label>
-
-                        {{field|add_class:'form-control'}}
+                    <div id="step1">
+                        {% for field in form %}
+                            {% if forloop.counter <= 5 %} 
+                            <label class="form-label text-gray-900 mb-0">
+                                {{ field.label_tag }}
+                            </label>
+                                {{field|add_class:'form-control'}}
+                            {% endif %}
                     {% endfor %}
-                    <div class="w-100 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary signup-submit m-2">Submit</button>
+
+                    </div>
+                    <div id="step2" style="display:none">
+                        {% for field in form %}
+
+                            {% if forloop.counter > 5 and forloop.counter <= 10 %}
+                            <label class="form-label text-gray-900 mb-0">
+                                {{ field.label_tag }}
+                            </label>
+                                {{field|add_class:'form-control'}}
+                            {% endif %}
+                    {% endfor %}
+                            
+                    </div>
+                    <div id="step3" style="display:none">
+                        {% for field in form %}
+
+                          {% if forloop.counter > 10 and forloop.counter <= 16 %}
+                          <label class="form-label text-gray-900 mb-0">
+                            {{ field.label_tag }}
+                        </label>
+                            {{field|add_class:'form-control'}}
+                        {% endif %}
+                    {% endfor %}
+
+                    </div>
+                    <div id="step4" style="display:none">
+                        {% for field in form %}
+
+                          {% if forloop.counter > 16   %}
+                          <label class="form-label text-gray-900 mb-0">
+                            {{ field.label_tag }}
+                        </label>
+                            {{field|add_class:'form-control'}}
+                        {% endif %}
+                    {% endfor %}
+
+                    </div>
+
+                    <div class="w-100 d-flex mt-2  justify-content-between ">
+                        <button type="button" id="prevBtn" class="btn btn-dark " onclick="prevStep()">Previous</button>
+                        <button type="button" id="nextBtn" class="btn btn-dark" onclick="nextStep()">Next</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary signup-submit">Submit</button>
                     </div>
 
                 </form>
 
             </div>
         </div>
-      </div>
+    </div>
 
 
 
 
     <script src="{% static 'vendors/jQuery/jQuery.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper-base.min.js"
-      integrity="sha384-zxRSn3abFpD/iz/veg8J/0KZ2LfRZ5E5XNjs5Nog12mzyZLcVCt2BCFWX9Cwk+W"
-      crossorigin="anonymous"></script>
+        integrity="sha384-zxRSn3abFpD/iz/veg8J/0KZ2LfRZ5E5XNjs5Nog12mzyZLcVCt2BCFWX9Cwk+W"
+        crossorigin="anonymous"></script>
     <script>
-        var form = $('#form').submit(function(e){
+        var form = $('#form').submit(function (e) {
             e.preventDefault();
             submitDetails();
         })
-        function submitDetails(){
+        function submitDetails() {
             var form = $('#form').serialize();
-            $.ajax({
-                url: "{% url 'student-details' %}",
-                type: 'POST',
-                data: form,
-                success: function(response){
-                    console.log(response);
-                    window.location="{% url 'index' %}";
-                }
-            }); 
+            console.log(form)
+            // $.ajax({
+            //     url: "{% url 'student-details' %}",
+            //     type: 'POST',
+            //     data: form,
+            //     success: function (response) {
+            //         console.log(response);
+            //         window.location = "{% url 'index' %}";
+            //     }
+            // });
         }
         // $('.signup-submit').on('click',function(){
         //     signup();
         // })
 
     </script>
+    <script>
+        var currentStep = 1;
+        showStep(currentStep);
+        
+        function nextStep() {
+          currentStep++;
+          showStep(currentStep);
+        }
+      
+        function prevStep() {
+          currentStep--;
+          showStep(currentStep);
+        }
+      
+        function showStep(step) {
+          if (step == 1) {
+            $("#prevBtn").hide();
+          } else {
+            $("#prevBtn").show();
+          }
+          
+          if (step == 4) {
+            $("#nextBtn").hide();
+            $("#submitBtn").show();
+          } else {
+            $("#nextBtn").show();
+            $("#submitBtn").hide();
+          }
+      
+          $("#step1").hide();
+          $("#step2").hide();
+          $("#step3").hide();
+          $("#step4").hide();
+      
+          $("#step" + step).show();
+        }
+      </script>
 
 </body>
+
 </html>
