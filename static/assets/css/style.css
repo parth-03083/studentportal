@@ -3,7 +3,11 @@ html,body{
       margin: 0;
       padding: 0;
 }
-.bg-dark{
+
+.gen-bg{
+    background-color: #DCDCDC !important;
+}
+.dark-bg{
     background-color: #060E40 !important;
 }
 

@@ -2,6 +2,7 @@
 {% load tags %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,59 +11,65 @@
     <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 </head>
+
 <body>
     <div class="container-fluid h-100">
-        <div class="row bg-primary d-flex justify-content-center">
-            <div class="h1 text-center text-white">Student Portal Signup</div>
-        </div>
-        <div class="row d-flex justify-content-center h-100 bg-dark align-items-center">
-            <div class="col-md-4 card shadow p-2 m-2 rounded">
-                <form id="loginForm" method="POST">
-                    {% csrf_token %}
-                    <div class="p-2">
-                        <label for="userneme" class="text-secondary  font-weight-bold"> E-mail </label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter Email">
-                    </div>
-                    <div class="p-2">
-                        <label for="password" class="text-secondary font-weight-bold"> Password </label>
-                        <input type="password" class="form-control" name="password" id="password">
-                    </div>
+        <div class="row gen-bg h-100 d-flex flex-column justify-content-center align-items-center">
+            <div class="card col-md-6
+             py-3 card dark-bg card-rounded shadow d-flex flex-column  align-items-center">
 
-                    <div class="w-100 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary signup-submit m-2">Submit</button>
-                    </div>
+                <div class="h2 text-center text-white mt-2">GECG Student Portal</div>
+                    <div class="col-md-6 shadow rounded py-2">
+                        <form id="loginForm" method="POST">
+                            {% csrf_token %}
+                            <div class="p-2">
+                                <label for="userneme" class="text-secondary  font-weight-bold"> E-mail </label>
+                                <input type="text" class="form-control" name="username" id="username"
+                                    placeholder="Enter Email">
+                            </div>
+                            <div class="p-2">
+                                <label for="password" class="text-secondary font-weight-bold"> Password </label>
+                                <input type="password" class="form-control" name="password" id="password">
+                            </div>
 
-                </form>
+                            <div class="w-100 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary signup-submit m-2">Submit</button>
+                            </div>
+
+                        </form>
+
+                    </div>
 
             </div>
         </div>
-      </div>
+    </div>
 
 
 
 
     <script src="{% static 'vendors/jQuery/jQuery.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper-base.min.js"
-      integrity="sha384-zxRSn3abFpD/iz/veg8J/0KZ2LfRZ5E5XNjs5Nog12mzyZLcVCt2BCFWX9Cwk+W"
-      crossorigin="anonymous"></script>
+        integrity="sha384-zxRSn3abFpD/iz/veg8J/0KZ2LfRZ5E5XNjs5Nog12mzyZLcVCt2BCFWX9Cwk+W"
+        crossorigin="anonymous"></script>
     <script>
-        var form = $('#loginForm').submit(function(e){
+        var form = $('#loginForm').submit(function (e) {
             e.preventDefault();
             login();
         })
-        function login(){
+        function login() {
             var form = $('#loginForm').serialize();
             $.ajax({
                 url: "{% url 'login' %}",
                 type: 'POST',
                 data: form,
-                success: function(response){
+                success: function (response) {
                     console.log(response);
-                    window.location="{% url 'index' %}";
+                    window.location = "{% url 'index' %}";
                 }
-            }); 
+            });
         }
     </script>
 
 </body>
+
 </html>
