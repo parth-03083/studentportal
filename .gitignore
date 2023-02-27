@@ -7,6 +7,7 @@ env/*
 
 *.pyc
 node_modules
+/__pycache__/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -19,9 +20,13 @@ local_settings.py
 **/migrations/**
 **/migrations
 **/migrations/__init__.py
-sportalmain/migrations
+sportalmain/migrations/
 blogApp/migrations/
 
 logs/
 logs/*.log
 studentportal/__pycache__/*
+sportalmain/__pycache__/
+sportalmain/__pycache__/*
+sportalmain/migrations/__pycache__/*
+sportalmain/migrations/__pycache__/

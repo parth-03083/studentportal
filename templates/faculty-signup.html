@@ -28,7 +28,7 @@
 
                         {{field|add_class:'form-control'}}
                         {% endfor %}
-                        <div class="w-100  d-flex justify-content-center">
+                        <div class="w-100 d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary signup-submit m-2">Submit</button>
                         </div>
 
@@ -54,15 +54,16 @@
         function signup() {
             var form = $('#signupForm').serialize();
             $.ajax({
-                url: "{% url 'signup' %}",
+                url: "{% url 'faculty-signup' %}",
                 type: 'POST',
                 data: form,
                 success: function (response) {
                     console.log(response);
-                    window.location = "{% url 'student-details' %}";
+                    window.location = "{% url 'index' %}";
                 }
             });
         }
+
     </script>
 
 </body>

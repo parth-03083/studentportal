@@ -56,7 +56,7 @@
                     {% endfor %}
 
                     </div>
-                    <div id="step4" style="display:none">
+                    <!-- <div id="step4" style="display:none">
                         {% for field in form %}
 
                           {% if forloop.counter > 16   %}
@@ -67,7 +67,7 @@
                         {% endif %}
                     {% endfor %}
 
-                    </div>
+                    </div> -->
 
                     <div class="w-100 d-flex mt-2  justify-content-between ">
                         <button type="button" id="prevBtn" class="btn btn-dark " onclick="prevStep()">Previous</button>
@@ -88,7 +88,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper-base.min.js"
         integrity="sha384-zxRSn3abFpD/iz/veg8J/0KZ2LfRZ5E5XNjs5Nog12mzyZLcVCt2BCFWX9Cwk+W"
         crossorigin="anonymous"></script>
-        
     <script>
         var form = $('#form').submit(function (e) {
             e.preventDefault();
@@ -98,18 +97,15 @@
             var form = $('#form').serialize();
             console.log(form)
             $.ajax({
-                url: "{% url 'student-details' %}",
+                url: "{% url 'academic-details' %}",
                 type: 'POST',
                 data: form,
                 success: function (response) {
                     console.log(response);
-                    window.location = "{% url 'academic-details' %}";
+                    window.location = "{% url 'index' %}";
                 }
             });
         }
-        // $('.signup-submit').on('click',function(){
-        //     signup();
-        // })
 
     </script>
     <script>
@@ -133,7 +129,7 @@
             $("#prevBtn").show();
           }
           
-          if (step == 4) {
+          if (step == 3) {
             $("#nextBtn").hide();
             $("#submitBtn").show();
           } else {
@@ -144,7 +140,7 @@
           $("#step1").hide();
           $("#step2").hide();
           $("#step3").hide();
-          $("#step4").hide();
+        //   $("#step4").hide();
       
           $("#step" + step).show();
         }

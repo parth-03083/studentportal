@@ -1,6 +1,5 @@
 # Create your models here.
 import datetime
-
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
@@ -10,10 +9,7 @@ class StudentDetails(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     enrollment_number = models.CharField(primary_key=True, max_length=12)
     personal_email = models.EmailField()
-    # institute_email = models.EmailField()
-    # first_name = models.CharField(max_length=30)
     middle_name = models.CharField(max_length=30, blank=True)
-    # last_name = models.CharField(max_length=30)
     father_email = models.EmailField(blank=True)
     mother_name = models.CharField(max_length=60)
     mother_email = models.EmailField(blank=True)

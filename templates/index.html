@@ -33,8 +33,10 @@
                 <div class="text-secondary text-white">
                   {{ request.user.first_name }} {{ request.user.last_name }}
                 </div>
+    
+                <a href=" {% url 'logout' %} " class="btn btn-secondary mt-2 w-75"> Logout  </a>
                 {% else %}
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-link " href="{% url 'login' %}">Login</a>
                 {% endif %}
               </div>
             </li>
@@ -60,7 +62,7 @@
         </div>
       </nav>
 
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-0 m-0">
         {% block content %}
 
         {% endblock %}
@@ -85,7 +87,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper-base.min.js"
     integrity="sha384-zxRSn3abFpD/iz/veg8J/0KZ2LfRZ5E5XNjs5Nog12mzyZLcVCt2BCFWX9Cwk+W" crossorigin="anonymous"></script>
-
+  <script src="{% static 'vendors/jQuery/jQuery.min.js' %}"></script>
 
   <script>
     $(document).ready({

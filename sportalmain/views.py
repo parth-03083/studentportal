@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render,redirect
 from .forms import *
 from .models import *
 from django.http import HttpResponse,JsonResponse
 import json
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
 
 # Create your views here.
 
@@ -67,10 +68,52 @@ def requestBonafide(request):
         form = BonafideRequestForm(request.POST)
         if form.is_valid():
             bonafide = form.save(commit=False)
-            bonafide.user = request.user
+            bonafide.user = StudentDetails.objects.get(user=request.user)
             bonafide.save()
             return redirect(reverse('index'))
         else:
             return HttpResponse('Invalid form')
     context = {'form':form}
     return render(request,'bonafide-request.html',context)
+
+
+def facultySignup(request):
+    form = SignUp()
+    if request.method == 'POST':
+        form = SignUp(request.POST)
+        if form.is_valid():
+            email=form.cleaned_data['email']
+            password=form.cleaned_data['password1']
+            first_name=form.cleaned_data['first_name']
+            last_name=form.cleaned_data['last_name']
+            user = User.objects.create_user(username=email,email=email,password=password,first_name=first_name,last_name=last_name)
+            user=authenticate(request,username=email,password=password)
+            login(request,user=user)
+            print(user)
+            return redirect(reverse('index'))
+        else:
+            return HttpResponse('Invalid form',form.errors)
+    context = {'form':form}
+    return render(request,'faculty-signup.html',context)
+
+def academicDetails(request):
+    form = AcademicInfoForm()
+    if request.method == 'POST':
+        form = AcademicInfoForm(request.POST)
+        if form.is_valid():
+            student_details = form.save(commit=False)
+            student_details.user = StudentDetails.objects.get(user=request.user)
+            student_details.save()
+            return redirect(reverse('index'))
+        else:
+            return HttpResponse('Invalid form')
+    context = {'form':form}
+    return render(request,'academic-details.html',context)
+
+def logoutView(request):
+    logout(request)
+    return redirect(reverse('login'))
+
+    
+
+
