@@ -10,7 +10,17 @@ from django.urls import reverse
 
 
 def index(request):
-    return render(request,'index.html')
+    print(request.user.is_authenticated)
+    if request.user.is_authenticated:
+       student_details = StudentDetails.objects.get(user=request.user) 
+       academic_details = AcademicInfo.objects.get(user=student_details)
+       if student_details and academic_details: 
+        context = {'student_details':student_details,'academic_details':academic_details, 'headers': True  }
+       else:
+        context = {'headers': False}
+    else:
+        context = {'headers': False}
+    return render(request,'home.html',context)
 
 
 def register(request):
