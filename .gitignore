@@ -4,6 +4,7 @@ db.sqlite3
 */__pycache__/*
 __pycache__/*
 env/*
+myenv/*
 
 *.pyc
 node_modules
@@ -14,6 +15,7 @@ __pycache__/
 *.sqlite3
 db.sqlite3
 env
+myenv
 local_settings.py
 # cademy/local_settings.py
 # Only for Development only

@@ -57,15 +57,31 @@
             login();
         })
         function login() {
+            var rform = $('#username').val();
+            if(rform.split('@')[1] != 'gecg28.ac.in'){
+                alert('Please enter valid GECG email.')
+                return;
+            }
             var form = $('#loginForm').serialize();
+            console.log(rform)
             $.ajax({
                 url: "{% url 'login' %}",
                 type: 'POST',
                 data: form,
                 success: function (response) {
                     console.log(response);
-                    window.location = "{% url 'index' %}";
+                    if(response == 'Invalid credentials'){
+                        alert('Wrong username and passowrd')
+                    }
+                    else{
+                         window.location = "{% url 'index' %}";
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
                 }
+                
+
             });
         }
     </script>
