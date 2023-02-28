@@ -151,3 +151,6 @@ def activityView(request):
             return HttpResponse('Invalid form')
     context = {'form':form}
     return render(request,'activity.html',context)
+
+def aboutView(request):
+    return render(request,'about.html')

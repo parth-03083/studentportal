@@ -40,25 +40,25 @@
               </div>
             </li>
             <li class="nav-item text-center nav-text-font">
-              <a class="nav-link active" href="#">Dashboard</a>
+              <a class="nav-link active" href="{% url 'index' %}">Dashboard</a>
             </li>
             <li class="nav-item text-center nav-text-font">
-              <a class="nav-link" href="#">Activity Points</a>
+              <a class="nav-link" href="{% url 'points-activity' %}">Activity Points</a>
             </li>
-            <li class="nav-item text-center nav-text-font">
+            <!-- <li class="nav-item text-center nav-text-font">
               <a class="nav-link" href="#">Scholarship</a>
             </li>
             <li class="nav-item text-center nav-text-font">
               <a class="nav-link" href="#">Result</a>
-            </li>
+            </li> -->
             <li class="nav-item text-center nav-text-font">
-              <a class="nav-link" href="#">Payments/FEES</a>
+              <a class="nav-link" href="{% url 'fees-upload' %}">Payments/FEES</a>
             </li>
-            <li class="nav-item text-center nav-text-font">
+            <!-- <li class="nav-item text-center nav-text-font">
               <a class="nav-link" href="#">Profile</a>
-            </li>
+            </li> -->
             <li class="nav-item text-center nav-text-font">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item text-center nav-text-font">
