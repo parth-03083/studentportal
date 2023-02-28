@@ -124,6 +124,30 @@ def logoutView(request):
     logout(request)
     return redirect(reverse('login'))
 
-    
+def feesView(request):
+    form = FeesForm()
+    if request.method == 'POST':
+        form = FeesForm(request.POST)
+        if form.is_valid():
+            fees = form.save(commit=False)
+            fees.user = StudentDetails.objects.get(user=request.user)
+            fees.save()
+            return redirect(reverse('index'))
+        else:
+            return HttpResponse('Invalid form')
+    context = {'form':form}
+    return render(request,'fees.html',context)
 
-
+def activityView(request):
+    form = ActivityForm()
+    if request.method == 'POST':
+        form = ActivityForm(request.POST)
+        if form.is_valid():
+            activity = form.save(commit=False)
+            activity.user = StudentDetails.objects.get(user=request.user)
+            activity.save()
+            return redirect(reverse('index'))
+        else:
+            return HttpResponse('Invalid form')
+    context = {'form':form}
+    return render(request,'activity.html',context)

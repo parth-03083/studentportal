@@ -104,11 +104,11 @@ class Fees(models.Model):
         MinValueValidator(1)
     ])
     fees_type = models.CharField(max_length=50)
-    pdf_file = models.FileField(upload_to='fees/')
+    pdf_file = models.FileField(upload_to='fees/', blank=True,null=True)
     user = models.ForeignKey(StudentDetails, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.fees_type} - {self.semester}'
+        return f'{self.fees_type} - {self.semester} - {self.user}'
 
 
 class BonafideRequest(models.Model):

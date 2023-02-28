@@ -48,3 +48,7 @@ class BonafideRequestForm(forms.ModelForm):
         model = BonafideRequest
         exclude = ['user', 'uuid', 'status']
 
+class ActivityForm(forms.ModelForm):
+    class Meta:
+        model = ActivityPoints100
+        exclude = ['user','status']

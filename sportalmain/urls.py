@@ -12,6 +12,10 @@ urlpatterns=[
     path('academic-details/',views.academicDetails,name='academic-details'),
     path('logout/',views.logoutView,name='logout'),
     path('bonafide-request/',views.requestBonafide,name='bonafide-request'),
-    #Admin 
-    #  
+    path('fees-upload/',views.feesView,name='fees-upload'),
+    path('activity-points/',views.activityView,name='points-activity'),
+
+    # Admin
+    
+
 ]

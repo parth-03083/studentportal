@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load tags %}
+{% block content %}
+<div class="container-fluid h-100 gen-bg">
+    <div class="row  h-100 d-flex flex-column justify-content-center align-items-center">
+        <div class="card w-50 pt-3
+        card dark-bg card-rounded shadow d-flex flex-column  align-items-center">
+        <div class="h2 text-center text-white mt-2">Upload Fees Data</div>
+
+            
+            <div class="col-md-6 shadow rounded py-2">
+                <form id="feesForm" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <label class="form-label text-gray-900 mb-0 mt-1 text-secondary  font-weight-bold">{{ field.label_tag }}</label>
+
+                    {{field|add_class:'form-control'}}
+                    {% endfor %}
+                    <div class="w-100 d-flex  mt-2 justify-content-center">
+                        <button type="submit" class="btn btn-primary m-2">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+$('#feesForm').on('submit',function (e) {
+    e.preventDefault();
+    bonafide();
+});
+function bonafide(){
+    form = $('#feesForm').serialize();
+    console.log(form);
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'fees-upload' %}",
+        data: form,
+        success:function(){
+            console.log('success');
+        }
+    })
+}
+
+</script>
+{% endblock %}
