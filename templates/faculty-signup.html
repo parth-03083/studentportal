@@ -15,9 +15,9 @@
 <body>
     <div class="container-fluid h-100">
         <div class="row gen-bg h-100 d-flex flex-column justify-content-center align-items-center">
-            <div class="card h-75 w-50 pt-3
+            <div class="card w-50 pt-3
             card dark-bg card-rounded shadow d-flex flex-column  align-items-center">
-            <div class="h2 text-center text-white mt-2">Student Portal SIGN UP</div>
+            <div class="h2 text-center text-white ">Faculty Sign Up</div>
 
                 
                 <div class="col-md-6 shadow rounded py-2">
@@ -52,6 +52,12 @@
             signup();
         })
         function signup() {
+            var rform = $('#id_email').val();
+            if(rform.split('@')[1] != 'gecg28.ac.in'){
+                alert('Please enter valid GECG email.')
+                return;
+            }
+
             var form = $('#signupForm').serialize();
             $.ajax({
                 url: "{% url 'faculty-signup' %}",

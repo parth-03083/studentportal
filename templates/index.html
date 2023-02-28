@@ -21,9 +21,9 @@
   {% if request.user.is_authenticated%}
   <div class="container-fluid h-100">
     <div class="row h-100">
-      <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+      <nav class="px-5 h-100 overflow-hidden d-none d-md-block bg-dark sidebar">
         <div class="sidebar-sticky">
-          <ul class="nav flex-column">
+          <ul class="nav flex-column justify-content-center">
             <li class="nav-item">
               <div class="w-100 my-3 d-flex justify-content-center text-center flex-column">
                 {% if request.user.is_authenticated %}
@@ -32,32 +32,42 @@
                 </div>
                 <div class="text-secondary text-white">
                   {{ request.user.first_name }} {{ request.user.last_name }}
+                  <br />
+                  ({{request.user}})
                 </div>
-    
-                <a href=" {% url 'logout' %} " class="btn btn-secondary mt-2 w-75"> Logout  </a>
+                  
+                <!-- <a href=" {% url 'logout' %} " class="btn btn-secondary mt-2 w-75"> Logout  </a> -->
                 {% else %}
                 <a class="nav-link " href="{% url 'login' %}">Login</a>
                 {% endif %}
               </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item text-center nav-text-font">
               <a class="nav-link active" href="#">Dashboard</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Orders</a>
+            <li class="nav-item text-center nav-text-font">
+              <a class="nav-link" href="#">Activity Points</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Customers</a>
+            <li class="nav-item text-center nav-text-font">
+              <a class="nav-link" href="#">Scholarship</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Reports</a>
+            <li class="nav-item text-center nav-text-font">
+              <a class="nav-link" href="#">Result</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Analytics</a>
+            <li class="nav-item text-center nav-text-font">
+              <a class="nav-link" href="#">Payments/FEES</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Settings</a>
+            <li class="nav-item text-center nav-text-font">
+              <a class="nav-link" href="#">Profile</a>
             </li>
+            <li class="nav-item text-center nav-text-font">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item text-center nav-text-font">
+              <a class="nav-link" href=" {% url 'logout' %} ">Logout</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </nav>
