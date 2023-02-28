@@ -5,9 +5,168 @@
 
 {% if headers %}
 <div class="row h-25 mb-5"></div>
-<div class="row justify-content-between">
-    <div class="col-md-5"></div>
-    <div class="col-md-5"></div>
+<div class="row d-flex h-50 w-100 justify-content-center">
+    <div class="col-md-5 h-100 py-3 mx-2 card shadow">
+        <h3>Student Details</h3>
+        <div class="content h-100 d-flex flex-column flex-wrap">
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Name
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{request.user.first_name}} {{request.user.last_name}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Enrolment Number
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.enrollment_number}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Gender
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.gender}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Adhaar Number
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.aadhar_number}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Parent’s Mobile
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.parent_mobile_no}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Blood Group
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.blood_group}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Institute Email
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{request.user.username}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Mobile Number
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.personal_mobile_no}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Personal Email
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.personal_email}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Date of Birth
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.date_of_birth}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Father's Email
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.father_email}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Mother's Email
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.mother_email}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- academic details -->
+
+    <div class="col-md-5 h-100 py-3 card shadow">
+        <h3>Academic Details</h3>
+        <div class="content h-100 d-flex flex-column flex-wrap">
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Course
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{academic_details.current_course}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Branch
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{student_details.current_branch}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Academic Status
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    studying
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    College
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    013 - Goverment Enginnering College , Gandhinagar
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Current Semester
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{academic_details.current_semester}}
+                </div>
+            </div>
+            <div class=" py-1">
+                <div class="h6 m-0 ">
+                    Admission Type
+                </div>
+                <div class="h5 m-0 text-secondary">
+                    {{academic_details.admission_type}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
 
