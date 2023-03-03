@@ -120,7 +120,7 @@ class BonafideRequest(models.Model):
         ('approved', "APPORVED"),
         ('rejected', "REJECTED"),
     ]
-    status = models.CharField(choices=STATUS_TYPE, default=1, max_length=20)
+    status = models.CharField(choices=STATUS_TYPE, default='pending', max_length=20)
 
     def __str__(self):
         return self.uuid
@@ -131,24 +131,8 @@ class BonafideRequest(models.Model):
         return branch
     
     def save(self):
-        self.uuid = self.user.user.first_name + "-" + self.user.user.last_name + "-" + str(datetime.datetime.now())
+        self.uuid = self.user.user.first_name + "-" + self.user.user.last_name + "-" + str(datetime.datetime.now()).replace(' ','').replace(':','').replace('.','')
         super(BonafideRequest, self).save()
-
-
-class FacultyDetails(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    BRANCH_CHOICES = [
-        ('ce', 'Computer'),
-        ('it', 'Information Technology'),
-        ('ic', 'Instrumental and Control'),
-        ('bm', 'Biomedical'),
-        ('ec', 'Electornics and Communication'),
-        ('rob', 'Robotics'),
-        ('civil', 'Civil'),
-        ('mech', 'Mechanical'),
-        ('metl', 'Mettalurgy'),
-    ]
-    department = models.CharField(max_length=10, choices=BRANCH_CHOICES)
 
 
 class ActivityPoints100(models.Model):

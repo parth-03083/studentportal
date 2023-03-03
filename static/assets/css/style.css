@@ -13,6 +13,11 @@ html,body{
 .gen-bg{
     background-color: #DCDCDC !important;
 }
+
+.gen-lbg{
+    background-color: #ebebf3fe !important;
+}
+
 .dark-bg{
     background-color: #060E40 !important;
 }

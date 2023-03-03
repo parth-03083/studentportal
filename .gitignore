@@ -28,7 +28,13 @@ blogApp/migrations/
 logs/
 logs/*.log
 studentportal/__pycache__/*
-sportalmain/__pycache__/
+studentportal/__pycache__/
+sportalmain/__pycache__
+sportalmain/migrations
+sportalmain/migrations/*
+
 sportalmain/__pycache__/*
 sportalmain/migrations/__pycache__/*
 sportalmain/migrations/__pycache__/
+sportalmain/migrations/__pycache__
+.space

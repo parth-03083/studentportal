@@ -8,7 +8,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(StudentDetails, StudentAdmin)
-admin.site.register(FacultyDetails)
+# admin.site.register(FacultyDetails)
 admin.site.register(BonafideRequest)
 admin.site.register(Fees)
 admin.site.register(AcademicInfo)
