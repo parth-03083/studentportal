@@ -42,12 +42,9 @@ def rejectBonaFide(request):
 def activityPointsAdmin(request):
     if request.user.is_authenticated:
         faculty = FacultyDetails.objects.get(user=request.user)
-        if faculty.is_activity:
-            activity_object = ActivityPoints100.objects.filter(user__current_branch=faculty.department,status='pending')
-            print(activity_object)
-            return render(request,'admin_activity_points.html',{'activity_object':activity_object})    
-        else:
-            return HttpResponse("You are not allowed to view this page")
+        activity_object = ActivityPoints100.objects.filter(user__current_branch=faculty.department,status='pending')
+        print(activity_object)
+        return render(request,'admin_activity_points.html',{'activity_object':activity_object})       
     else:
         return redirect('login')
     
