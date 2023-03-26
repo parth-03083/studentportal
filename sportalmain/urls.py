@@ -16,7 +16,6 @@ urlpatterns=[
     path('bonafide-request/',views.requestBonafide,name='bonafide-request'),
     path('fees-upload/',views.feesView,name='fees-upload'),
     path('activity-points/',views.activityView,name='points-activity'),
-
     # Admin
     
 
