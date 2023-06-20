@@ -11,20 +11,29 @@ from django.urls import reverse
 
 def index(request):
     print(request.user.is_authenticated)
+    context = {}
     if request.user.is_authenticated:
         try:
             student_details = StudentDetails.objects.get(user=request.user) 
             academic_details = AcademicInfo.objects.get(user=student_details)
             if student_details and academic_details: 
                 context = {'student_details':student_details,'academic_details':academic_details, 'headers': True  }
+            elif not student_details:
+                return redirect(reverse('student-details'))
+            elif not academic_details:
+                return redirect(reverse('academic-details'))
             else:
-                context = {'headers': False}
-            return render(request,'home.html',context)
-        except student_details.DoesNotExist:
-           return redirect('student-details')
-        except academic_details.DoesNotExist:
-              return redirect('academic-details')
-    
+                context = {'headers': True , 'student_details':False, 'academic_details':False }
+        except AcademicInfo.DoesNotExist:
+            print("Academic Details not found")
+            return redirect('academic-details')
+        except StudentDetails.DoesNotExist:
+            return redirect('student-details')
+    else:
+        context = {'headers': False}
+        print("something happend wrong ")
+    print(context)
+    return render(request,'home.html',context)
 
 
 def register(request):
@@ -173,7 +182,7 @@ def activityView(request):
                 activity.save()
                 return redirect(reverse('index'))
             else:
-                return redirect('student-details')
+                return redirect()
         else:
             return HttpResponse('Invalid form')
     context = {'form':form , 'activity_objects':activity_objects}
