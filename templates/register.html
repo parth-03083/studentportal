@@ -31,6 +31,13 @@
                         <div class="w-100  d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary signup-submit m-2">Submit</button>
                         </div>
+                        {% if messages %}
+                            <ul class="mt-4 alert alert-danger" style="list-style: none;">
+                                {% for message in messages %}
+                                  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message}}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
 
                     </form>
 
@@ -66,6 +73,10 @@
                 success: function (response) {
                     console.log(response);
                     window.location = "{% url 'student-details' %}";
+                },
+                error: function(e){
+                    console.log(e);
+                    alert("Text");
                 }
             });
         }

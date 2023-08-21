@@ -5,7 +5,7 @@ from django.http import HttpResponse,JsonResponse
 import json
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-
+from django.contrib import messages
 # Create your views here.
 
 
@@ -38,20 +38,26 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        form = SignUp(request.POST)
+        try:
+            form = SignUp(request.POST)
 
-        if form.is_valid():
-            email=form.cleaned_data['email']
-            password=form.cleaned_data['password1']
-            first_name=form.cleaned_data['first_name']
-            last_name=form.cleaned_data['last_name']
-            user = User.objects.create_user(username=email,email=email,password=password,first_name=first_name,last_name=last_name)
-            user=authenticate(request,username=email,password=password)
-            login(request,user=user)
-            print(user)
-            # return redirect(reverse('index'))
-        else:
-            return HttpResponse('Invalid form',form.errors) 
+            if form.is_valid():
+                email=form.cleaned_data['email']
+                password=form.cleaned_data['password1']
+                first_name=form.cleaned_data['first_name']
+                last_name=form.cleaned_data['last_name']
+                user = User.objects.create_user(username=email,email=email,password=password,first_name=first_name,last_name=last_name)
+                user=authenticate(request,username=email,password=password)
+                login(request,user=user)
+                print(user)
+                # return redirect(reverse('index'))
+            else:
+                return HttpResponse('Invalid form',form.errors)
+        except AssertionError as e:
+            messages.error(request, 'username or password not correct')
+            print(e)
+        
+
     context={'form':SignUp()}
     return render(request,'register.html',context)
 
